@@ -13,7 +13,7 @@
 
     <div class="flex">
         <aside class="w-64 bg-white shadow p-4 min-h-screen">
-            <ul class="space-y-2">
+            <ul class="space-y-2">-
                 <li><a href="/" class="hover:underline">Dashboard</a></li>
                 <li><a href="#" class="hover:underline">Ressourcen</a></li>
                 <li><a href="#" class="hover:underline">Anfragen</a></li>
