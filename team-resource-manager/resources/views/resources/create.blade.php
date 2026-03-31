@@ -1,11 +1,14 @@
-@extends('layouts.app')
+@extends('layout.layout')
 
 @section('content')
-    <h2 class="text-2xl font-bold mb-4">Neue Ressource anlegen</h2>
+    <div class="page-header">
+        <h1 class="page-title">Neue Ressource anlegen</h1>
+        <p class="page-subtitle">Erfasse eine neue Ressource im System.</p>
+    </div>
 
     @if($errors->any())
-        <div class="mb-4 p-2 bg-red-100 text-red-700 rounded">
-            <ul class="list-disc pl-5">
+        <div class="alert alert-danger">
+            <ul class="mb-0 ps-3">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -13,48 +16,47 @@
         </div>
     @endif
 
-    <form action="{{ route('resources.store') }}" method="POST" class="space-y-4">
-        @csrf
+    <div class="dashboard-card p-4">
+        <form action="{{ route('resources.store') }}" method="POST">
+            @csrf
 
-        <div>
-            <label class="block mb-1 font-semibold">Name *</label>
-            <input type="text" name="name" value="{{ old('name') }}"
-                   class="w-full border rounded p-2" required>
-        </div>
+            <div class="row g-3">
+                <div class="col-12">
+                    <label for="name" class="form-label fw-semibold">Name *</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" required>
+                </div>
 
-        <div>
-            <label class="block mb-1 font-semibold">Typ</label>
-            <input type="text" name="type" value="{{ old('type') }}"
-                   class="w-full border rounded p-2">
-        </div>
+                <div class="col-md-6">
+                    <label for="type" class="form-label fw-semibold">Typ</label>
+                    <input type="text" id="type" name="type" value="{{ old('type') }}" class="form-control">
+                </div>
 
-        <div>
-            <label class="block mb-1 font-semibold">Standort</label>
-            <input type="text" name="location" value="{{ old('location') }}"
-                   class="w-full border rounded p-2">
-        </div>
+                <div class="col-md-6">
+                    <label for="location" class="form-label fw-semibold">Standort</label>
+                    <input type="text" id="location" name="location" value="{{ old('location') }}" class="form-control">
+                </div>
 
-        <div>
-            <label class="block mb-1 font-semibold">Beschreibung</label>
-            <textarea name="description" rows="4"
-                      class="w-full border rounded p-2">{{ old('description') }}</textarea>
-        </div>
+                <div class="col-12">
+                    <label for="description" class="form-label fw-semibold">Beschreibung</label>
+                    <textarea id="description" name="description" rows="5" class="form-control">{{ old('description') }}</textarea>
+                </div>
 
-        <div class="flex items-center">
-            <input type="checkbox" name="is_active" id="is_active" class="mr-2"
-                   {{ old('is_active', true) ? 'checked' : '' }}>
-            <label for="is_active">Aktiv</label>
-        </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input type="checkbox"
+                               name="is_active"
+                               id="is_active"
+                               class="form-check-input"
+                               {{ old('is_active', true) ? 'checked' : '' }}>
+                        <label for="is_active" class="form-check-label">Ressource ist aktiv</label>
+                    </div>
+                </div>
+            </div>
 
-        <div class="space-x-2">
-            <button type="submit"
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Speichern
-            </button>
-            <a href="{{ route('resources.index') }}"
-               class="text-gray-600 hover:underline">
-                Abbrechen
-            </a>
-        </div>
-    </form>
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Speichern</button>
+                <a href="{{ route('resources.index') }}" class="btn btn-outline-secondary">Abbrechen</a>
+            </div>
+        </form>
+    </div>
 @endsection
