@@ -53,6 +53,9 @@
                 </div>
             </div>
 
+            <div class="col-12">
+                <div 
+
             <div class="d-flex gap-2 mt-4">
                 <button type="submit" class="btn btn-primary">Speichern</button>
                 <a href="{{ route('resources.index') }}" class="btn btn-outline-secondary">Abbrechen</a>

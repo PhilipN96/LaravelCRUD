@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\ReportEntryController;
 
 Route::get('/', function () {
     return redirect()->route('resources.index');
@@ -17,3 +18,9 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::resource('report-entries', ReportEntryController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::resource('report-entries', ReportEntryController::class);
+});

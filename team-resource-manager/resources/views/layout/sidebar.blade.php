@@ -20,6 +20,12 @@
             <span>Ressourcen</span>
         </a>
 
+        <a href="{{ route('report-entries.index') }}"
+            class="sidebar-link {{ Route::is('report-entries.*') ? 'active' : '' }}">
+            <i class="bi bi-journal-text"></i>
+    <span>Berichtsheft</span>
+        </a>
+
         <a href="{{ route('resources.create') }}"
            class="sidebar-link {{ Route::is('resources.create') ? 'active' : '' }}">
             <i class="bi bi-plus-circle-fill"></i>
