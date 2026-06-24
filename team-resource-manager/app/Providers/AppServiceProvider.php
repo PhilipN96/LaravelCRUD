@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Nur Administratoren dürfen Ressourcen verwalten.
+        Gate::define('admin', fn (User $user) => $user->isAdmin());
+
+        // Paginierung im Bootstrap-5-Stil ausgeben (passend zum Frontend).
+        Paginator::useBootstrapFive();
     }
 }

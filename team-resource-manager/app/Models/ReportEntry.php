@@ -14,4 +14,12 @@ class ReportEntry extends Model
         'content',
         'status',
     ];
+
+    /**
+     * Der Benutzer, zu dem dieser Eintrag gehört.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

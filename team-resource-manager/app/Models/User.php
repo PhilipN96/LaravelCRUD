@@ -21,7 +21,24 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
+
+    /**
+     * Die Berichtsheft-Einträge dieses Benutzers.
+     */
+    public function reportEntries()
+    {
+        return $this->hasMany(ReportEntry::class);
+    }
+
+    /**
+     * Prüft, ob der Benutzer ein Administrator ist.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 
     /**
      * The attributes that should be hidden for serialization.

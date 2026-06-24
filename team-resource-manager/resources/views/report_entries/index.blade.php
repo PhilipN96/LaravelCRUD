@@ -1,7 +1,5 @@
 @extends('layout.layout')
 
-@extends('layout.layout')
-
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -54,6 +52,10 @@
                                 </span>
                             </td>
                             <td class="text-end">
+                                <a href="{{ route('report-entries.show', $entry) }}" class="btn btn-sm btn-outline-secondary">
+                                    Ansehen
+                                </a>
+
                                 <a href="{{ route('report-entries.edit', $entry) }}" class="btn btn-sm btn-outline-primary">
                                     Bearbeiten
                                 </a>

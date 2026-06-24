@@ -1,7 +1,5 @@
 @extends('layout.layout')
 
-@extends('layout.layout')
-
 @section('content')
     <div class="mb-4">
         <h1 class="mb-1">Neuen Berichtsheft-Eintrag anlegen</h1>

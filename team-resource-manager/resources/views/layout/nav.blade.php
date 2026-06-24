@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark app-navbar py-3">
     <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center gap-3" href="{{ route('resources.index') }}">
-            <img src="{{ asset('images/ottorothlabel.png') }}"
+            <img src="{{ asset('images/buch.png') }}"
                  width="60"
                  height="60"
                  alt="Logo"
@@ -33,6 +33,9 @@
                     <li class="nav-item">
                         <span class="nav-link text-white-50">
                             <i class="bi bi-person-circle me-1"></i>{{ Auth::user()->name }}
+                            @if(Auth::user()->isAdmin())
+                                <span class="badge rounded-pill bg-primary ms-1">Admin</span>
+                            @endif
                         </span>
                     </li>
 
