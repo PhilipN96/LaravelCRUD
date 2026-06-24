@@ -149,6 +149,17 @@
         </div>
     </div>
 
+    <footer class="text-center text-muted py-4">
+        <small>
+            &copy; {{ date('Y') }} {{ config('app.name', 'Digitales Berichtsheft') }} &middot;
+            erstellt von
+            <a href="https://github.com/PhilipN96" target="_blank" rel="noopener noreferrer"
+               class="fw-semibold text-decoration-none">
+                <i class="bi bi-github me-1"></i>PhilipN96
+            </a>
+        </small>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
