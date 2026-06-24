@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ReportEntry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ReportEntryController extends Controller
 {
@@ -26,11 +27,19 @@ class ReportEntryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'week_number' => 'required|integer|min:1|max:53',
+            'week_number' => [
+                'required', 'integer', 'min:1', 'max:53',
+                Rule::unique('report_entries')->where(fn ($query) => $query
+                    ->where('user_id', Auth::id())
+                    ->where('year', $request->integer('year'))
+                ),
+            ],
             'year'        => 'required|integer|min:2000|max:2100',
             'title'       => 'required|string|max:255',
             'content'     => 'required|string',
             'status'      => 'required|string|in:Entwurf,Eingereicht,Freigegeben',
+        ], [
+            'week_number.unique' => 'Für diese Kalenderwoche und dieses Jahr existiert bereits ein Eintrag.',
         ]);
 
         $data['user_id'] = Auth::id();
@@ -71,11 +80,19 @@ class ReportEntryController extends Controller
         }
 
         $data = $request->validate([
-            'week_number' => 'required|integer|min:1|max:53',
+            'week_number' => [
+                'required', 'integer', 'min:1', 'max:53',
+                Rule::unique('report_entries')->ignore($reportEntry->id)->where(fn ($query) => $query
+                    ->where('user_id', Auth::id())
+                    ->where('year', $request->integer('year'))
+                ),
+            ],
             'year'        => 'required|integer|min:2000|max:2100',
             'title'       => 'required|string|max:255',
             'content'     => 'required|string',
             'status'      => 'required|string|in:Entwurf,Eingereicht,Freigegeben',
+        ], [
+            'week_number.unique' => 'Für diese Kalenderwoche und dieses Jahr existiert bereits ein Eintrag.',
         ]);
 
         $reportEntry->update($data);

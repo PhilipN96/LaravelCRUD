@@ -28,7 +28,7 @@
                                name="week_number"
                                id="week_number"
                                class="form-control"
-                               value="{{ old('week_number') }}"
+                               value="{{ old('week_number', now()->isoWeek()) }}"
                                min="1"
                                max="53"
                                required>
@@ -40,7 +40,7 @@
                                name="year"
                                id="year"
                                class="form-control"
-                               value="{{ old('year') }}"
+                               value="{{ old('year', now()->year) }}"
                                required>
                     </div>
 
